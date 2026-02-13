@@ -1,0 +1,35 @@
+@page
+@model QuizApp.Pages.Quizzes.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div>
+    <h2>Quiz: @Model.Quiz.Title</h2>
+
+    @if (Model.Questions != null && Model.Questions.Any())
+    {
+        <h3>Questions</h3>
+        <ol>
+        @foreach (var question in Model.Questions)
+        {
+            <li>
+                <a style="text-decoration: none;" asp-page="/Questions/Details" asp-route-id="@question.Id" asp-route-quizId="@Model.Quiz.Id">
+                    @question.Text
+                </a>
+            </li>
+        }
+        </ol>
+    }
+    else
+    {
+        <p>No questions available for this quiz.</p>
+    }
+    <a asp-page="/Questions/Create" asp-route-quizId="@Model.Quiz.Id">Add Question</a>
+
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Quiz.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

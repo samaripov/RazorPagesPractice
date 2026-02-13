@@ -1,0 +1,45 @@
+@page
+@model QuizApp.Pages.AnswerOptions.CreateModel
+
+        @{
+        ViewData["Title"] = "Create";
+        var questionId = ViewData["QuestionId"];
+        var quizId = ViewData["QuizId"];
+        }
+        
+        <h1>Create</h1>
+        
+    <h4>AnswerOption</h4>
+    <hr />
+    <div class="row">
+    <div class="col-md-4">
+    <form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div>
+                <input name="quizId" value="@quizId" hidden/>
+                <input asp-for="AnswerOption.QuestionId" class="form-control" value="@questionId" hidden/>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnswerOption.Text" class="control-label"></label>
+                <input asp-for="AnswerOption.Text" class="form-control" />
+                <span asp-validation-for="AnswerOption.Text" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="AnswerOption.isCorrect" /> @Html.DisplayNameFor(model => model.AnswerOption.isCorrect)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="/Questions/Details" asp-route-id="@questionId" asp-route-quizId="@quizId">Back to Question</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
