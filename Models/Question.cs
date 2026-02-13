@@ -10,4 +10,5 @@ public class Question
     public string? Text { get; set; }
 
     public ICollection<AnswerOption> AnswerOptions { get; set; } = new List<AnswerOption>();
+    public Quiz Quiz { get; set; } = default!;
 }

@@ -17,5 +17,18 @@ namespace QuizApp.Data
         public DbSet<QuizApp.Models.Quiz> Quiz { get; set; } = default!;
         public DbSet<QuizApp.Models.Question> Question { get; set; } = default!;
         public DbSet<QuizApp.Models.AnswerOption> AnswerOption { get; set; } = default!;
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Quiz>()
+                .HasMany(q => q.Questions)
+                .WithOne(q => q.Quiz)
+                .HasForeignKey(q => q.QuizId);
+            
+            modelBuilder.Entity<Question>()
+                .HasMany(q => q.AnswerOptions)
+                .WithOne(q => q.Question)
+                .HasForeignKey(q => q.QuestionId);
+        }
     }
 }
