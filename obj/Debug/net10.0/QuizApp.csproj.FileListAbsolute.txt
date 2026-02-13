@@ -364,3 +364,4 @@
 /home/sam/Desktop/ASP.NET Core/QuizApp/obj/Debug/net10.0/QuizApp.pdb
 /home/sam/Desktop/ASP.NET Core/QuizApp/obj/Debug/net10.0/QuizApp.genruntimeconfig.cache
 /home/sam/Desktop/ASP.NET Core/QuizApp/obj/Debug/net10.0/ref/QuizApp.dll
+/home/sam/Desktop/ASP.NET Core/QuizApp/obj/Debug/net10.0/QuizApp.sourcelink.json

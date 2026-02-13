@@ -1,4 +1,5 @@
 @page
+@using QuizApp.Models
 @model QuizApp.Pages.Questions.DetailsModel
 
 @{
@@ -12,14 +13,17 @@
 <div>
     <h4>Question</h4>
     <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Question.Text)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Question.Text)
-        </dd>
-    </dl>
+    <h2>@Html.DisplayFor(model => model.Question.Text)</h2>
+    <ul>
+        @foreach(var option in @Model.AnswerOptions) {
+            @if(option.isCorrect) {
+                <li>@option.Text - Correct Answer</li>
+            } else {
+                <li>@option.Text</li>
+            }
+        }
+    </ul>
+
 </div>
 <div>
     <a asp-page="/AnswerOptions/Create" asp-route-questionId = "@Model.Question.Id" asp-route-quizId="@quizId">Add Option</a> |

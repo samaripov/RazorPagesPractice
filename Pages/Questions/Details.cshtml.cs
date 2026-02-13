@@ -20,6 +20,7 @@ namespace QuizApp.Pages.Questions
         }
 
         public Question Question { get; set; } = default!;
+        public IList<AnswerOption> AnswerOptions { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id, int? quizId)
         {
@@ -34,7 +35,10 @@ namespace QuizApp.Pages.Questions
             if (question is not null)
             {
                 Question = question;
-
+                AnswerOptions = await _context
+                                            .AnswerOption
+                                            .Where(a => a.QuestionId == question.Id)
+                                            .ToListAsync();
                 return Page();
             }
 

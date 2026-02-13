@@ -27,7 +27,7 @@ namespace QuizApp.Pages.AnswerOptions
         }
 
         [BindProperty]
-        public AnswerOption AnswerOption { get; set; } = default!;
+        public AnswerOption AnswerOption { get; set; } = new AnswerOption();
 
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync(int quizId)
