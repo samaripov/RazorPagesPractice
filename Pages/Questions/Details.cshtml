@@ -16,11 +16,13 @@
     <h2>@Html.DisplayFor(model => model.Question.Text)</h2>
     <ul>
         @foreach(var option in @Model.AnswerOptions) {
-            @if(option.isCorrect) {
-                <li>@option.Text - Correct Answer</li>
-            } else {
-                <li>@option.Text</li>
-            }
+            <a asp-page="/AnswerOptions/Edit" asp-route-id="@option.Id" asp-route-quizId="@quizId">
+                @if(option.isCorrect) {
+                    <li>@option.Text - Correct Answer</li>
+                } else {
+                    <li>@option.Text</li>
+                }
+            </a>
         }
     </ul>
 

@@ -3,6 +3,7 @@
 
 @{
     ViewData["Title"] = "Edit";
+    var quizId = ViewData[""];
 }
 
 <h1>Edit</h1>
@@ -13,6 +14,7 @@
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input name="quizId" value="@quizId" hidden/>
             <input type="hidden" asp-for="AnswerOption.Id" />
             <div class="form-group">
                 <label asp-for="AnswerOption.Text" class="control-label"></label>

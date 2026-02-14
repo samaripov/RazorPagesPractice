@@ -23,14 +23,15 @@ namespace QuizApp.Pages.AnswerOptions
         [BindProperty]
         public AnswerOption AnswerOption { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int? id, int? quizId)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
-            var answeroption =  await _context.AnswerOption.FirstOrDefaultAsync(m => m.Id == id);
+            ViewData["QuizId"] = quizId;
+            
+            var answeroption = await _context.AnswerOption.FirstOrDefaultAsync(m => m.Id == id);
             if (answeroption == null)
             {
                 return NotFound();
@@ -41,13 +42,8 @@ namespace QuizApp.Pages.AnswerOptions
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more information, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(int quizId)
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-
             _context.Attach(AnswerOption).State = EntityState.Modified;
 
             try
@@ -66,7 +62,11 @@ namespace QuizApp.Pages.AnswerOptions
                 }
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("/Questions/Details", new
+            {
+                id = AnswerOption.QuestionId,
+                quizId
+            });
         }
 
         private bool AnswerOptionExists(int id)
